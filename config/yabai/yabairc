@@ -39,4 +39,7 @@ yabai -m rule --add app="^Activity Monitor$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Path Finder$" manage=off
 yabai -m rule --add app="^Private Internet Access$" manage=off
 
+yabai -m rule --add app="^BlueStacks$" manage=off
+yabai -m rule --add app="^mpv$" manage=off
+
 echo "yabai configuration loaded.."
