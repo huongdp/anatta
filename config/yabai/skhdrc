@@ -3,12 +3,14 @@ alt - h : yabai -m window --focus west
 alt - j : yabai -m window --focus south
 alt - k : yabai -m window --focus north
 alt - l : yabai -m window --focus east
+alt - n : yabai -m window --focus next || yabai -m window --focus first
+alt - p : yabai -m window --focus prev || yabai -m window --focus last
 
-# moving windows
-shift + alt - h : yabai -m window --warp west
-shift + alt - j : yabai -m window --warp south
-shift + alt - k : yabai -m window --warp north
-shift + alt - l : yabai -m window --warp east
+# resize windows
+ctrl + cmd - h : yabai -m window --warp west
+ctrl + cmd - j : yabai -m window --warp south
+ctrl + cmd - k : yabai -m window --warp north
+ctrl + cmd - l : yabai -m window --warp east
 
 # move focus container to workspace
 shift + cmd - m : yabai -m window --space last && yabai -m space --focus last
@@ -118,3 +120,10 @@ alt + ctrl - f : yabai -m space --layout float && \
                  yabai -m config window_border off
 alt + ctrl - b : yabai -m space --layout bsp && \
                  yabai -m config window_border on
+
+cmd + alt - n : yabai -m space --create && \
+                index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
+                yabai -m space --focus "${index}"
+
+# open applications
+cmd - m : open -na /Applications/mpv.app "$(pbpaste)"
