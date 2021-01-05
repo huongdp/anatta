@@ -1,4 +1,12 @@
-# Terminal emulator
+#######################
+# Program Keybindings #
+#######################
+
+# lock screen
+super + l
+	~/.config/i3lock/lock.sh
+
+# terminal emulator
 super + Return
 	gnome-terminal
 
@@ -6,7 +14,17 @@ super + Return
 alt + @space
 	rofi -show drun
 
-# Reload sxhkd:
+# Screenshot
+Print
+	scmenu
+
+#####################
+# BSPWM Keybindings #
+#####################
+
+#----~ Init ~----#
+
+# make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
 
@@ -21,7 +39,7 @@ super + alt + {q,r}
 super + {_,shift + }q
 	bspc node -{c,k}
 
-### WORKSPACE SWITCHING ###
+#----~ Workspace Switching ~----#
 
 # Switch Active Workspaces
 alt + {Tab, shift + Tab}
@@ -31,11 +49,11 @@ alt + {Tab, shift + Tab}
 super + {grave,Tab}
 	bspc {node,desktop} -f last
 
+#----~ Workspace Management ~----#
+
 # alternate between the tiled and monocle layout
-super + m
-	bspc desktop -l next
 super + f
-	bspc node -t \~fullscreen
+	bspc desktop -l next
 
 # swap the current node and the biggest local node
 super + g
@@ -50,7 +68,7 @@ super + i
 	bspc node focused.tiled -t pseudo_tiled || bspc node -t tiled
 
 super + {_, shift} + h
-	{bspc node --flag hidden=on, bspunhide}
+	{bsphide, bspunhide}
 
 super + shift + r
 	bspc node @/ -R 90
@@ -84,6 +102,7 @@ super + bracket{left,right}
 super + {_,shift + }{1-9}
 	bspc {desktop -f,node -d} '^{1-9}'
 
+#----~ Preselection ~----#
 
 # preselect the direction
 super + ctrl + {Left, Down, Up, Right}
@@ -101,7 +120,8 @@ super + ctrl + space
 super + ctrl + shift + space
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
-### MOVEMENT/RESIZING ###
+#----~ Movement/Resizing ~----#
+
 # resize
 super + e : {Left, Down, Up, Right}
     bspwm_resize expand {west,south,north,east} 25
@@ -119,11 +139,38 @@ super + alt + ctrl + {Left, Down, Up, Right}
 super + alt + {Left, Down, Up, Right}
 	bspc node -v {-50 0,0 50,0 -50,50 0}
 
-### SYSTEM CONTROL ###
+
+###################################
+########### System Keys ###########
+###################################
+
 #Volume Control
+#        amixer set Master toggle
 XF86AudioLowerVolume
-	amixer set Master 5%-
+	amixer -c 1 set Speaker 10%- || amixer -c 0 set Speaker 5%-
 XF86AudioRaiseVolume
-	amixer set Master 5%+
+	amixer -c 1 set Speaker 5%+ || amixer -c 0 set Speaker 5%+
 XF86AudioMute
-    amixer set Master toggle
+	amixer -c 1 set Speaker toggle || amixer -c 0 set Speaker toggle
+
+#Brightness control
+XF86MonBrightnessDown
+	light -U 5
+XF86MonBrightnessUp
+	light -A 5
+
+## Personal scripts
+super + l
+	~/.local/bin/dpass
+
+## Dropdown
+super + alt + m
+	tdrop -am -w 1000 -h 650 -x 23% -y 17% kitty -e cmus
+super + shift + Return
+	tdrop -am -w 1000 -h 650 -x 23% -y 17% -n 1 kitty
+super + r
+	tdrop -am -w 1000 -h 650 -x 23% -y 17% -n 2 kitty -e ranger
+
+### APPLICATIONS ###
+alt + ctrl + m
+	mpv "$(pbpaste)"
