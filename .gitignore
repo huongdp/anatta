@@ -12,4 +12,5 @@
 
 
 # Others
-watch_later/
+**/mpv/watch_later/
+**/mpv/playlists/

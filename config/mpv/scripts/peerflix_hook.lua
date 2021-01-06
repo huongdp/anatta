@@ -60,4 +60,3 @@ mp.add_hook("on_unload", 10, function ()
         os.execute("killall peerflix") -- Should get a way to get the PID, but using $! seems to fail.
     end
 end)
-@Inginn
