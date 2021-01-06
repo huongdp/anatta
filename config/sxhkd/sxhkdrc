@@ -145,13 +145,15 @@ super + alt + {Left, Down, Up, Right}
 ###################################
 
 #Volume Control
-#        amixer set Master toggle
-XF86AudioLowerVolume
-	amixer -c 1 set Speaker 10%- || amixer -c 0 set Speaker 5%-
-XF86AudioRaiseVolume
-	amixer -c 1 set Speaker 5%+ || amixer -c 0 set Speaker 5%+
+
+XF86Audio{Raise,Lower}Volume
+	pactl set-sink-volume @DEFAULT_SINK@ {+,-}5%
+
 XF86AudioMute
-	amixer -c 1 set Speaker toggle || amixer -c 0 set Speaker toggle
+	pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+XF86Audio{Play,Stop,Prev,Next}
+	playerctl {play-pause,stop,previous,next}
 
 #Brightness control
 XF86MonBrightnessDown
