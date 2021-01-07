@@ -172,7 +172,3 @@ super + shift + Return
 	tdrop -am -w 1000 -h 650 -x 23% -y 17% -n 1 kitty
 super + r
 	tdrop -am -w 1000 -h 650 -x 23% -y 17% -n 2 kitty -e ranger
-
-### APPLICATIONS ###
-alt + ctrl + m
-	mpv "$(pbpaste)"
