@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# necessary to load scripting-addition during startup on macOS Big Sur
+# *yabai --load-sa* is configured to run through sudo without a password
+sudo yabai --load-sa
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+
+# CONFIG
 # global settings
 yabai -m config mouse_follows_focus          off
 yabai -m config focus_follows_mouse          off
@@ -29,24 +35,23 @@ yabai -m config left_padding                 2
 yabai -m config right_padding                2
 yabai -m config window_gap                   2
 
+# RULES
 # excepted applications
 yabai -m rule --add app="^Finder$" layer=above manage=off
 yabai -m rule --add app="^Disk Utility$" sticky=on layer=above manage=off
-yabai -m rule --add app="^System Preferences$" layer=above manage=off
+yabai -m rule --add app="^System Preferences$" layer=above manage=on space=^9 mouse_follows_focus=on
 yabai -m rule --add app="^Disk Utility$" sticky=on layer=above manage=off
 yabai -m rule --add app="^System Information$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Activity Monitor$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Path Finder$" manage=off
 yabai -m rule --add app="^Private Internet Access$" manage=off
-
 yabai -m rule --add app="^BlueStacks$" manage=off
 yabai -m rule --add app="^mpv$" manage=off
+yabai -m rule --add app="^Microsoft Edge$" manage=on space=^2 mouse_follows_focus=on
 
 
-
-
-STACKLINE_EVENTS="\
-    application_activated \
+# SIGNALS
+STACKLINE_EVENTS="application_activated \
     application_front_switched \
     application_hidden \
     application_launched \
@@ -58,22 +63,13 @@ STACKLINE_EVENTS="\
     window_minimized \
     window_resized"
 
-yabai -m signal --add \
-    event="window_destroyed" \
-    label="stackline_window_destroyed" \
-    action="echo ':window_destroyed' | hs -m stackline-events"
-
 for event in $STACKLINE_EVENTS
 do
-    yabai -m signal --add \
-        event="$event" \
-        label="stackline_$event" \
-        app!="Hammerspoon" \
-        action="echo ':$event' | hs -m stackline-events"
+    yabai -m signal --add event="$event" label="stackline_$event" app!="Hammerspoon" action="echo ':$event' | hs -m stackline-events"
 done
-
-
-
+yabai -m signal --add event="window_destroyed" label="stackline_window_destroyed" action="echo ':window_destroyed' | hs -m stackline-events"
+yabai -m signal --add event=application_front_switched action="${functions[topmost_opacity]}"
+yabai -m signal --add event=window_focused action="${functions[topmost_opacity]}"
 
 
 

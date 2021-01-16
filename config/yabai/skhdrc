@@ -136,6 +136,11 @@ cmd + ctrl - down  : yabai -m window south --stack $(yabai -m query --windows --
 cmd + ctrl - up    : yabai -m window north --stack $(yabai -m query --windows --window | jq -r '.id')
 cmd + ctrl - right : yabai -m window east --stack $(yabai -m query --windows --window | jq -r '.id')
 
+cmd + ctrl + alt - left    :  window=$(yabai -m query --windows --window | jq -r '.id') && yabai -m window west --stack $window || (yabai -m window $window --toggle float && yabai -m window $window --toggle float)
+cmd + ctrl + alt - down    :  window=$(yabai -m query --windows --window | jq -r '.id') && yabai -m window south --stack $window || (yabai -m window $window --toggle float && yabai -m window $window --toggle float)
+cmd + ctrl + alt - up      :  window=$(yabai -m query --windows --window | jq -r '.id') && yabai -m window north --stack $window || (yabai -m window $window --toggle float && yabai -m window $window --toggle float)
+cmd + ctrl + alt - right   :  window=$(yabai -m query --windows --window | jq -r '.id') && yabai -m window east --stack $window || (yabai -m window $window --toggle float && yabai -m window $window --toggle float)
+
 
 # open applications
 cmd - m : open -na /Applications/mpv.app "$(pbpaste)"
