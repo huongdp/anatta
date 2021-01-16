@@ -5,6 +5,11 @@
 [submodule "config/zsh/zsh-autosuggestions"]
 	path = config/zsh/zsh-autosuggestions
 	url = ../../zsh-users/zsh-autosuggestions
+
 [submodule "config/zsh/zsh-syntax-highlighting"]
 	path = config/zsh/zsh-syntax-highlighting
 	url = ../../zsh-users/zsh-syntax-highlighting
+
+[submodule "config/hammerspoon/stackline"]
+	path = config/hammerspoon/stackline
+	url = ../../AdamWagner/stackline
