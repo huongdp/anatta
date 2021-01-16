@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+function topmost_opacity {
+  {
+    date >> ~/Desktop/text.txt
+    windows="$(yabai -m query --windows)"
+    # selectively blacklist apps here, e.g., Alfred
+    query='.topmost == 1 and .focused == 0 and .app != "Alfred"'
+    jq -n --argjson windows "${windows}" "\$windows[] | select((${query}) | not).id" |
+      xargs -I{} yabai -m window {} --opacity 0.9
+    jq -n --argjson windows "${windows}" "\$windows[] | select(${query}).id" |
+      xargs -I{} yabai -m window {} --opacity 1.0
+  } 2>/dev/null
+} 
