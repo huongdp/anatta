@@ -186,5 +186,11 @@ if [ -f ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'
 fi
 
+# enable fuzzy auto-completion and key bindings
+[ -f ~/.config/fzf/fzf.zsh ] && source ~/.config/fzf/fzf.zsh
+
 source $HOME/.config/zsh/aliases
 source $HOME/.config/zsh/colors
+source $HOME/.local/bin/topmost_opacity
+
+
