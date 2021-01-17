@@ -13,3 +13,6 @@
 [submodule "config/hammerspoon/stackline"]
 	path = config/hammerspoon/stackline
 	url = ../../AdamWagner/stackline
+[submodule "config/kitty/base16-kitty"]
+	path = config/kitty/base16-kitty
+	url = ../../kdrag0n/base16-kitty
