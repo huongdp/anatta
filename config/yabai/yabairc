@@ -37,18 +37,22 @@ yabai -m config window_gap                   2
 
 # RULES
 # excepted applications
-yabai -m rule --add app="^Finder$" layer=above manage=off
+yabai -m rule --add app="^Finder$" layer=above manage=on mouse_follows_focus=on
 yabai -m rule --add app="^Disk Utility$" sticky=on layer=above manage=off
-yabai -m rule --add app="^System Preferences$" layer=above manage=on space=^9 mouse_follows_focus=on
+yabai -m rule --add app="^System Preferences$" sticky=on layer=above manage=on space=^9 mouse_follows_focus=on
 yabai -m rule --add app="^Disk Utility$" sticky=on layer=above manage=off
 yabai -m rule --add app="^System Information$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Activity Monitor$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Path Finder$" manage=off
 yabai -m rule --add app="^Private Internet Access$" manage=off
 yabai -m rule --add app="^BlueStacks$" manage=off
-yabai -m rule --add app="^mpv$" manage=off
-yabai -m rule --add app="^Microsoft Edge$" manage=on space=^2 mouse_follows_focus=on
-
+yabai -m rule --add app="^mpv$" sticky=on layer=above manage=off
+yabai -m rule --add app="^Microsoft Edge$" manage=on space=^1 mouse_follows_focus=on
+yabai -m rule --add app="^Code$" layer=above manage=on space=^2 mouse_follows_focus=on
+yabai -m rule --add app="^kitty|alacritty$" title="^Primary$" layer=above manage=on space=^3 mouse_follows_focus=on
+yabai -m rule --add app="^kitty|alacritty$" title="^Secondary$" layer=above manage=on space=^6 mouse_follows_focus=on
+yabai -m rule --add app="^Notion$" layer=above manage=on space=^7 mouse_follows_focus=on
+yabai -m rule --add app="^Preview$" layer=above manage=on space=^8 mouse_follows_focus=on
 
 # SIGNALS
 STACKLINE_EVENTS="application_activated \

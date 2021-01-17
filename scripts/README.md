@@ -8,6 +8,7 @@
 brew install --cask alacritty
 brew install --cask docker
 brew install --cask firefox
+brew install --cask karabiner-elements
 brew install --cask openkey
 brew install --cask microsoft-edge
 brew install --cask mpv
