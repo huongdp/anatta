@@ -12,6 +12,11 @@ if [ $(uname -s) = "Linux" ]; then
   ln -snfv $PWD/config/polybar $HOME/.config/polybar
   ln -snfv $PWD/config/rofi $HOME/.config/rofi
   ln -snfv $PWD/config/picom $HOME/.config/picom
+
+  ln -snfv $PWD/gtk-3.0 $HOME/.config/gtk-3.0
+  ln -snfv $PWD/themes $HOME/.themes
+  ln -snfv $PWD/icons $HOME/.icons
+  ln -snfv $PWD/dunst $HOME/.config/dunst
 fi
 
 if [ -x "$(command -v kitty)" ]; then
