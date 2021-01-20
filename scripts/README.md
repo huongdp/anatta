@@ -6,6 +6,7 @@
 
 ```
 brew install --cask alacritty
+brew install --cask dash
 brew install --cask docker
 brew install --cask firefox
 brew install --cask karabiner-elements

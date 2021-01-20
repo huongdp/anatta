@@ -53,6 +53,8 @@ yabai -m rule --add app="^kitty|alacritty$" title="^Primary$" layer=above manage
 yabai -m rule --add app="^kitty|alacritty$" title="^Secondary$" layer=above manage=on space=^6 mouse_follows_focus=on
 yabai -m rule --add app="^Notion$" layer=above manage=on space=^7 mouse_follows_focus=on
 yabai -m rule --add app="^Preview$" layer=above manage=on space=^8 mouse_follows_focus=on
+yabai -m rule --add app="^Dash$" layer=above manage=on space=^8 mouse_follows_focus=on
+
 
 # SIGNALS
 STACKLINE_EVENTS="application_activated \
